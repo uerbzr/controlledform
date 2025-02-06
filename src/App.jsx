@@ -40,8 +40,32 @@ function App() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
-    console.log("Form submitted");
+
+    //add to complaints state
+    setComplaints([
+      ...complaints,
+      {
+        id: Math.max(...complaints.map((complaint) => complaint.id)) + 1,
+        name: formData.name,
+        address: formData.address,
+        phone: formData.phone,
+        email: formData.email,
+        complaint: formData.complaint,
+        contact: formData.contact,
+        consent: formData.con,
+      },
+    ]);
+
+    //reset form
+    setFormData({
+      name: "",
+      address: "",
+      phone: "",
+      email: "",
+      complaint: "",
+      contact: "",
+      consent: false,
+    });
   };
 
   return (
